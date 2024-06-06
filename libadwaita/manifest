@@ -1,0 +1,46 @@
+: 1
+name: libadwaita
+version: 1.5.0-a.0.z
+type: lib
+language: c
+summary: Building blocks for modern GNOME applications.
+license: LGPL-2.0-or-later ; GNU Library General Public License v2 or later
+package-description-file: PACKAGE-README.md
+url: https://gitlab.gnome.org/GNOME/libadwaita
+email: packaging@build2.org ; Mailing list.
+doc-url: https://gnome.pages.gitlab.gnome.org/libadwaita/doc/
+package-url: https://github.com/build2-packaging/libadwaita
+depends: * build2 >= 0.16.0
+depends: * bpkg >= 0.16.0
+
+# Required; otherwise, bdep will search for them in the system package
+# repository but will disregard the --sys-install option.
+#
+# BUG:
+#
+# Boris emphasized on Slack that this shouldn't be required. In fact, build2 CI
+# does honor the --sys-install option, but doesn't when attempting the same
+# procedure locally.
+#
+depends: gtk4-devel
+depends: glib2-devel
+depends: appstream-devel
+
+# It is possible (at the time of writing) to build on Windows and MacOS, but it
+# requires manually compiling the entire GTK stack.
+#
+requires: linux
+
+builds: none
+bindist-fedora-builds: bindist
+bindist-fedora-build-include: linux_fedora_40-**
+bindist-fedora-build-exclude: **
+bindist-fedora-build-config:
+\
++bpkg.bindist.fedora:
++bbot.bindist.upload:
+b.create:config.c.std=gnu11
+sys:gtk4-devel
+sys:glib2-devel
+sys:appstream-devel
+\

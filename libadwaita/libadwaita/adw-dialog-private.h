@@ -1,0 +1,1 @@
+../../upstream/src/adw-dialog-private.h

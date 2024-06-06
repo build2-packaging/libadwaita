@@ -1,0 +1,41 @@
+name: Continuous Integration
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+        name: Setup checkout
+        with:
+          submodules: recursive
+
+      # BUG: required; build2 doesn't proceed with local "safe directory" from
+      # checkout.
+      #
+      - run: git config --global --add safe.directory '*'
+
+      # BUG: required; bdep will pass "-n/assumeno" to DNF when running under
+      # GitHub CI.
+      #
+      - run: sudo dnf install -y gtk4-devel glib2-devel appstream-devel
+
+      # BUG: FIXME: skip tests; GTK Tests will attempt to open display. This
+      # doesn't work when we're running in GitHub CI.
+      #
+      - run: |
+          bdep init -C @gcc cc config.cxx=g++ -- ?sys:gtk4-devel ?sys:glib2-devel ?sys:appstream-devel --sys-no-stub --sys-install
+          bdep update
+          bpkg bindist -d ../libadwaita-gcc/ libadwaita
+
+      - uses: actions/upload-artifact@v4
+        id: upload-artifact
+        with:
+          path: '/github/home/rpmbuild/RPMS/x86_64/**'

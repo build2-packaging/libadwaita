@@ -1,0 +1,63 @@
+intf_libs = # Interface dependencies.
+impl_libs = # Implementation dependencies.
+
+# Required dependencies are (currently) not packaged and need to come from the
+# system package manager.
+#
+import intf_libs += gtk4%lib{gtk-4}     \
+                   glib2%lib{glib-2.0}  \
+               appstream%lib{appstream}
+
+lib{adwaita}: {h c}{** -{*-win32 *-macos} -**.gresources...} \
+  $impl_libs $intf_libs
+lib{adwaita}: {c}{adw-settings-impl-win32}: \
+  include = ($cxx.target.class == 'windows')
+lib{adwaita}: {c}{adw-settings-impl-macos}: \
+  include = ($cxx.target.class == 'macos')
+
+# Build options.
+#
+c.poptions =+ "-I$out_root" "-I$out_base" "-I$src_root" "-I$src_base" \
+  "-DADWAITA_COMPILATION"
+
+#obja{*}: c.poptions += -DLIBADWAITA_STATIC_BUILD
+#objs{*}: c.poptions += -DLIBADWAITA_SHARED_BUILD
+
+# Export options.
+#
+lib{adwaita}:
+{
+  c.export.poptions = "-I$out_root" "-I$out_base" "-I$src_root" "-I$src_base"
+  c.export.libs = $intf_libs
+}
+
+#liba{adwaita}: c.export.poptions += -DLIBADWAITA_STATIC
+#libs{adwaita}: c.export.poptions += -DLIBADWAITA_SHARED
+
+# For pre-releases use the complete version to make sure they cannot
+# be used in place of another pre-release or the final version. See
+# the version module for details on the version.* variable values.
+#
+if $version.pre_release
+  lib{adwaita}: bin.lib.version = "-$version.project_id"
+else
+  lib{adwaita}: bin.lib.version = "-$version.major.$version.minor"
+
+# Install into the libadwaita/ subdirectory of, say, /usr/include/
+# recreating subdirectories.
+#
+h{*}:
+{
+  install         = include/libadwaita/
+  install.subdirs = true
+}
+
+# adwaita export a single public header file that in turn includes all the
+# smaller header files into it.
+#
+# https://developer.gnome.org/documentation/guidelines/programming/coding-style.html
+#
+h{adwaita.h}@./:
+{
+  install = include/
+}
