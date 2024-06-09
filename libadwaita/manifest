@@ -1,6 +1,6 @@
 : 1
 name: libadwaita
-version: 1.5.0-a.0.z
+version: 1.5.0
 type: lib
 language: c
 summary: Building blocks for modern GNOME applications.
