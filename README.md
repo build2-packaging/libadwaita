@@ -1,14 +1,10 @@
 # libadwaita - Building blocks for modern GNOME applications
 
-This is a `build2` package repository for [`libadwaita`](https://gitlab.gnome.org/GNOME/libadwaita), a GTK 4 library implementing the GNOME HIG, complementing GTK. 
+This is a [`build2`](https://build2.org/) package repository for [`libadwaita`](https://gitlab.gnome.org/GNOME/libadwaita).
 
-This file contains setup instructions and other details that are more
-appropriate for development rather than consumption. If you want to use
-`libadwaita` in your `build2`-based project, then instead see the accompanying
-[`PACKAGE-README.md`](libadwaita/PACKAGE-README.md) file.
+This file contains setup instructions and other details that are more appropriate for development rather than consumption. If you want to use [`libadwaita`](https://gitlab.gnome.org/GNOME/libadwaita) in your [`build2`](https://build2.org/)-based project, then instead see the accompanying [`PACKAGE-README.md`](libadwaita/PACKAGE-README.md) file.
 
-The development setup for `libadwaita` uses the standard `bdep`-based workflow.
-For example:
+The development setup for [`libadwaita`](https://gitlab.gnome.org/GNOME/libadwaita) uses the standard[`bdep`](https://build2.org/bdep/doc/bdep.xhtml)-based workflow. For example, on Fedora:
 
 ```
 git clone .../libadwaita.git

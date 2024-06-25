@@ -1,12 +1,4 @@
-# FIXME: rpaths will prevent tests from compiling. For some reason, the
-#        includes for GTK and Pango (among others) are stripped. e.g:
-#
-#   gcc -DADWAITA_COMPILATION -DADW_LOG_DOMAIN="Adwaita" -D_FORTIFY_SOURCE=3 -D_GLIBCXX_ASSERTIONS -DLIBGTK_4_SHARED -DLIBPANGO_1_0_SHARED -I/usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -I/usr/include/freetype2 -DWITH_GZFILEOP -I/usr/include/libpng16 -DWITH_GZFILEOP -DLIBPANGOCAIRO_1_0_SHARED -DLIBGDK_PIXBUF_2_0_SHARED -I/usr/include/cairo -DWITH_GZFILEOP -I/usr/include/libpng16 -DWITH_GZFILEOP -I/usr/include/freetype2 -DWITH_GZFILEOP -DWITH_GZFILEOP -I/usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -I/usr/include/libxml2 -DWITH_GZFILEOP -DWITH_GZFILEOP -DWITH_GZFILEOP -I/usr/include/pixman-1 -DWITH_GZFILEOP -DWITH_GZFILEOP -DWITH_GZFILEOP -DWITH_GZFILEOP -DWITH_GZFILEOP -DWITH_GZFILEOP -DWITH_GZFILEOP -I/usr/include/cairo -DWITH_GZFILEOP -I/usr/include/libpng16 -DWITH_GZFILEOP -I/usr/include/freetype2 -DWITH_GZFILEOP -DWITH_GZFILEOP -I/usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -I/usr/include/libxml2 -DWITH_GZFILEOP -DWITH_GZFILEOP -DWITH_GZFILEOP -I/usr/include/pixman-1 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -I/usr/include/graphene-1.0 -I/usr/lib64/graphene-1.0/include -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -I/usr/include/appstream -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -DWITH_GZFILEOP -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-6 -DWITH_GZFILEOP -I/usr/include/libmount -I/usr/include/blkid -Wall -O2 -fstack-protector-strong -std=c17 -finput-charset=UTF-8 -o build-installed/tests/about-window/test-about-window.o -c -x c /tmp/dist/libadwaita-1.5.0/tests/about-window/test-about-window.c
-#
-# For now, tests are disabled on CI and must be enabled manually when
-# developping locally.
-
-./: {*/ -build/ -tests/} doc{PACKAGE-README.md} manifest
+./: {*/ -build/ -tests/} doc{README.md PACKAGE-README.md} manifest
 
 # Don't install tests.
 #

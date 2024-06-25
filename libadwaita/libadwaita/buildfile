@@ -5,13 +5,15 @@ impl_libs = # Implementation dependencies.
 # system package manager.
 #
 import intf_libs += gtk4%lib{gtk-4}     \
-                   glib2%lib{glib-2.0}  \
-               appstream%lib{appstream}
+                    glib2%lib{glib-2.0} \
+                    appstream%lib{appstream}
 
 lib{adwaita}: {h c}{** -{*-win32 *-macos} -**.gresources...} \
   $impl_libs $intf_libs
+
 lib{adwaita}: {c}{adw-settings-impl-win32}: \
   include = ($cxx.target.class == 'windows')
+
 lib{adwaita}: {c}{adw-settings-impl-macos}: \
   include = ($cxx.target.class == 'macos')
 

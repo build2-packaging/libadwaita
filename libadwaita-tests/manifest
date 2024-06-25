@@ -1,18 +1,17 @@
 : 1
-name: libadwaita
+name: libadwaita-tests
 version: 1.5.0+1
+type: exe
 language: c
-summary: Building blocks for modern GNOME applications
+project: libadwaita
+summary: Building blocks for modern GNOME applications; tests
 license: LGPL-2.0-or-later ; GNU Library General Public License v2 or later
-description-file: README.md
-package-description-file: PACKAGE-README.md
 url: https://gitlab.gnome.org/GNOME/libadwaita
 doc-url: https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1.5/
 package-url: https://github.com/build2-packaging/libadwaita
 email: packaging@build2.org ; Mailing list.
 depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
-tests: libadwaita-tests == $
 
 # Required; otherwise, bdep will search for them in the system package
 # repository but will disregard the --sys-install option.
