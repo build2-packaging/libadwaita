@@ -1,12 +1,5 @@
 import libs = libadwaita%lib{adwaita}
 
-# Required dependencies are (currently) not packaged and need to come from the
-# system package manager.
-#
-import libs += gtk4%lib{gtk-4}     \
-              glib2%lib{glib-2.0}  \
-          appstream%lib{appstream}
-
 exe{driver}: {h c}{**} $libs testscript{**}
 
-c.poptions += -DADWAITA_COMPILATION -DADW_LOG_DOMAIN=\"Adwaita\"
+c.poptions += "-DADWAITA_COMPILATION" "-DADW_LOG_DOMAIN=\"Adwaita\""

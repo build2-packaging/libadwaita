@@ -7,4 +7,4 @@
 
 # exe{driver}: {h c}{**} $libs testscript{**}
 
-# c.poptions += -DADWAITA_COMPILATION -DADW_LOG_DOMAIN=\"Adwaita\"
+# c.poptions += "-DADWAITA_COMPILATION" "-DADW_LOG_DOMAIN=\"Adwaita\""
