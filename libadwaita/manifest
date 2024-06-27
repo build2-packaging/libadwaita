@@ -26,6 +26,7 @@ tests: libadwaita-tests == $
 depends: gtk4-devel
 depends: glib2-devel
 depends: appstream-devel
+depends: dbus-x11
 
 # This library dependens on platform-specific implementation libraries that
 # are (currently) not packaged and need to come from the system package
@@ -43,4 +44,5 @@ b.create:config.c.std=gnu11
 sys:gtk4-devel
 sys:glib2-devel
 sys:appstream-devel
+sys:dbus-x11
 \
