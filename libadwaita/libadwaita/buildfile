@@ -4,18 +4,15 @@ impl_libs = # Implementation dependencies.
 # Required dependencies are (currently) not packaged and need to come from the
 # system package manager.
 #
-import intf_libs += gtk4%lib{gtk-4}     \
-                    glib2%lib{glib-2.0} \
-                    appstream%lib{appstream}
+import intf_libs += gtk4%lib{gtk-4}
+import intf_libs += glib2%lib{glib-2.0}
+import intf_libs += appstream%lib{appstream}
 
 lib{adwaita}: {h c}{** -{*-win32 *-macos} -**.gresources...} \
   $impl_libs $intf_libs
 
-lib{adwaita}: {c}{adw-settings-impl-win32}: \
-  include = ($cxx.target.class == 'windows')
-
-lib{adwaita}: {c}{adw-settings-impl-macos}: \
-  include = ($cxx.target.class == 'macos')
+lib{adwaita}: {c}{adw-settings-impl-win32}: include = ($c.target.class == 'windows')
+lib{adwaita}: {c}{adw-settings-impl-macos}: include = ($c.target.class == 'macos')
 
 # Build options.
 #
@@ -54,7 +51,7 @@ h{*}:
   install.subdirs = true
 }
 
-# adwaita export a single public header file that in turn includes all the
+# Adwaita export a single public header file that in turn includes all the
 # smaller header files into it.
 #
 # https://developer.gnome.org/documentation/guidelines/programming/coding-style.html
