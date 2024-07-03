@@ -10,7 +10,7 @@ The development setup for [`libadwaita`](https://gitlab.gnome.org/GNOME/libadwai
 git clone .../libadwaita.git
 cd libadwaita
 
-bdep init -C @gcc cc config.cxx=g++ -- ?sys:gtk4-devel ?sys:glib2-devel ?sys:appstream-devel --sys-no-stub --sys-install
+bdep init -C @gcc cc config.cxx=g++ -- ?sys:gtk4-devel ?sys:glib2-devel ?sys:appstream-devel ?sys:dbus-x11 --sys-no-stub --sys-install
 bdep update
 bdep test
 ```

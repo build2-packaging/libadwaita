@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-
 #include <adwaita.h>
 
 #undef NDEBUG
@@ -10,5 +6,6 @@
 int
 main ()
 {
+  adw_init ();
   return 0;
 }

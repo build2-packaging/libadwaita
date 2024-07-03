@@ -4,9 +4,9 @@ impl_libs = # Implementation dependencies.
 # Required dependencies are (currently) not packaged and need to come from the
 # system package manager.
 #
-import intf_libs += gtk4%lib{gtk-4}
-import intf_libs += glib2%lib{glib-2.0}
-import intf_libs += appstream%lib{appstream}
+intf_libs += gtk4%lib{gtk-4}
+intf_libs += glib2%lib{glib-2.0}
+intf_libs += appstream%lib{appstream}
 
 lib{adwaita}: {h c}{** -{*-win32 *-macos} -**.gresources...} \
   $impl_libs $intf_libs
