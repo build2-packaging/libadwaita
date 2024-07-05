@@ -4,7 +4,7 @@ impl_libs = # Implementation dependencies.
 # Required dependencies are (currently) not packaged and need to come from the
 # system package manager.
 #
-intf_libs += gtk4%lib{gtk-4}
+intf_libs += gtk4%lib{gtk4}
 intf_libs += glib2%lib{glib-2.0}
 intf_libs += appstream%lib{appstream}
 
@@ -28,6 +28,7 @@ lib{adwaita}:
 {
   c.export.poptions = "-I$out_root" "-I$out_base" "-I$src_root" "-I$src_base"
   c.export.libs = $intf_libs
+  c.pkgconfig.include = include/ include/libadwaita/
 }
 
 #liba{adwaita}: c.export.poptions += -DLIBADWAITA_STATIC
