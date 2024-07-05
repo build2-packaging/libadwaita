@@ -13,20 +13,6 @@ email: packaging@build2.org ; Mailing list.
 depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
 
-# Required; otherwise, bdep will search for them in the system package
-# repository but will disregard the --sys-install option.
-#
-# BUG:
-#
-# Boris emphasized on Slack that this shouldn't be required. In fact, in build2
-# CI, bdep does honor the --sys-install option, but it doesn't when attempting
-# the same procedure locally.
-#
-depends: gtk4-devel
-depends: glib2-devel
-depends: appstream-devel
-depends: dbus-x11
-
 # This library dependens on platform-specific implementation libraries that
 # are (currently) not packaged and need to come from the system package
 # manager.
