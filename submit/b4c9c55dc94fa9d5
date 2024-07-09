@@ -1,0 +1,8 @@
+: 1
+name: libadwaita-tests
+version: 1.5.0+4
+type: exe
+language: c
+project: libadwaita
+summary: Building blocks for modern GNOME applications; tests
+license: LGPL-2.0-or-later; GNU Library General Public License v2 or later
