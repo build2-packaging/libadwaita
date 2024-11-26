@@ -2,6 +2,7 @@
 
 #include "adw-about-dialog.h"
 #include "adw-about-window.h"
+#include "adw-accent-color.h"
 #include "adw-action-row.h"
 #include "adw-alert-dialog.h"
 #include "adw-animation.h"
@@ -12,9 +13,11 @@
 #include "adw-avatar.h"
 #include "adw-banner.h"
 #include "adw-bin.h"
+#include "adw-bottom-sheet.h"
 #include "adw-breakpoint.h"
 #include "adw-breakpoint-bin.h"
 #include "adw-button-content.h"
+#include "adw-button-row.h"
 #include "adw-carousel.h"
 #include "adw-carousel-indicator-dots.h"
 #include "adw-carousel-indicator-lines.h"
@@ -30,10 +33,13 @@
 #include "adw-flap.h"
 #include "adw-fold-threshold-policy.h"
 #include "adw-header-bar.h"
+#include "adw-layout.h"
+#include "adw-layout-slot.h"
 #include "adw-leaflet.h"
 #include "adw-length-unit.h"
 #include "adw-main.h"
 #include "adw-message-dialog.h"
+#include "adw-multi-layout-view.h"
 #include "adw-navigation-direction.h"
 #include "adw-navigation-split-view.h"
 #include "adw-navigation-view.h"
@@ -45,6 +51,8 @@
 #include "adw-preferences-row.h"
 #include "adw-preferences-window.h"
 #include "adw-spin-row.h"
+#include "adw-spinner.h"
+#include "adw-spinner-paintable.h"
 #include "adw-split-button.h"
 #include "adw-spring-animation.h"
 #include "adw-spring-params.h"
@@ -77,6 +85,7 @@ adw_init_public_types (void)
 {
   g_type_ensure (ADW_TYPE_ABOUT_DIALOG);
   g_type_ensure (ADW_TYPE_ABOUT_WINDOW);
+  g_type_ensure (ADW_TYPE_ACCENT_COLOR);
   g_type_ensure (ADW_TYPE_ACTION_ROW);
   g_type_ensure (ADW_TYPE_ALERT_DIALOG);
   g_type_ensure (ADW_TYPE_ANIMATION);
@@ -87,12 +96,14 @@ adw_init_public_types (void)
   g_type_ensure (ADW_TYPE_AVATAR);
   g_type_ensure (ADW_TYPE_BANNER);
   g_type_ensure (ADW_TYPE_BIN);
+  g_type_ensure (ADW_TYPE_BOTTOM_SHEET);
   g_type_ensure (ADW_TYPE_BREAKPOINT);
   g_type_ensure (ADW_TYPE_BREAKPOINT_BIN);
   g_type_ensure (ADW_TYPE_BREAKPOINT_CONDITION);
   g_type_ensure (ADW_TYPE_BREAKPOINT_CONDITION_LENGTH_TYPE);
   g_type_ensure (ADW_TYPE_BREAKPOINT_CONDITION_RATIO_TYPE);
   g_type_ensure (ADW_TYPE_BUTTON_CONTENT);
+  g_type_ensure (ADW_TYPE_BUTTON_ROW);
   g_type_ensure (ADW_TYPE_CALLBACK_ANIMATION_TARGET);
   g_type_ensure (ADW_TYPE_CAROUSEL);
   g_type_ensure (ADW_TYPE_CAROUSEL_INDICATOR_DOTS);
@@ -115,11 +126,14 @@ adw_init_public_types (void)
   g_type_ensure (ADW_TYPE_FLAP_TRANSITION_TYPE);
   g_type_ensure (ADW_TYPE_FOLD_THRESHOLD_POLICY);
   g_type_ensure (ADW_TYPE_HEADER_BAR);
+  g_type_ensure (ADW_TYPE_LAYOUT);
+  g_type_ensure (ADW_TYPE_LAYOUT_SLOT);
   g_type_ensure (ADW_TYPE_LEAFLET);
   g_type_ensure (ADW_TYPE_LEAFLET_PAGE);
   g_type_ensure (ADW_TYPE_LEAFLET_TRANSITION_TYPE);
   g_type_ensure (ADW_TYPE_LENGTH_UNIT);
   g_type_ensure (ADW_TYPE_MESSAGE_DIALOG);
+  g_type_ensure (ADW_TYPE_MULTI_LAYOUT_VIEW);
   g_type_ensure (ADW_TYPE_NAVIGATION_DIRECTION);
   g_type_ensure (ADW_TYPE_NAVIGATION_PAGE);
   g_type_ensure (ADW_TYPE_NAVIGATION_SPLIT_VIEW);
@@ -133,6 +147,8 @@ adw_init_public_types (void)
   g_type_ensure (ADW_TYPE_PREFERENCES_WINDOW);
   g_type_ensure (ADW_TYPE_PROPERTY_ANIMATION_TARGET);
   g_type_ensure (ADW_TYPE_RESPONSE_APPEARANCE);
+  g_type_ensure (ADW_TYPE_SPINNER);
+  g_type_ensure (ADW_TYPE_SPINNER_PAINTABLE);
   g_type_ensure (ADW_TYPE_SPIN_ROW);
   g_type_ensure (ADW_TYPE_SPLIT_BUTTON);
   g_type_ensure (ADW_TYPE_SPRING_ANIMATION);

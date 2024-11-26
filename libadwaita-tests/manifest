@@ -1,6 +1,6 @@
 : 1
 name: libadwaita-tests
-version: 1.5.0+4
+version: 1.6.0
 type: exe
 language: c
 project: libadwaita
@@ -13,21 +13,23 @@ email: packaging@build2.org ; Mailing list.
 depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
 
-# This library dependens on platform-specific implementation libraries that
-# are (currently) not packaged and need to come from the system package
-# manager.
+# This library relies on additional libraries that aren't currently packaged and
+# need to be installed through the system package manager.
+#
+# For now, only Fedora is supported, as the required libraries must meet minimum
+# version requirements, and Fedora is the only distribution that consistently
+# provides the necessary up-to-date versions.
 #
 builds: none
-bindist-fedora-builds: bindist
-bindist-fedora-build-include: linux_fedora_40-**
-bindist-fedora-build-exclude: **
-bindist-fedora-build-config:
+
+fedora-builds: sys
+fedora-build-include: linux_fedora_41-**
+fedora-build-exclude: **
+fedora-build-config:
 \
-+bpkg.bindist.fedora:
-+bbot.bindist.upload:
-b.create:config.c.std=gnu11
 sys:gtk4-devel
 sys:glib2-devel
 sys:appstream-devel
+sys:gobject-introspection-devel
 sys:dbus-x11
 \

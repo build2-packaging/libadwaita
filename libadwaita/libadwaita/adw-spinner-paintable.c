@@ -1,0 +1,1 @@
+../../upstream/src/adw-spinner-paintable.c

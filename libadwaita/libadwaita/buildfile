@@ -1,9 +1,6 @@
 intf_libs = # Interface dependencies.
 impl_libs = # Implementation dependencies.
 
-# Required dependencies are (currently) not packaged and need to come from the
-# system package manager.
-#
 intf_libs += gtk4%lib{gtk4}
 intf_libs += glib2%lib{glib-2.0}
 intf_libs += appstream%lib{appstream}
@@ -19,20 +16,24 @@ lib{adwaita}: {c}{adw-settings-impl-macos}: include = ($c.target.class == 'macos
 c.poptions =+ "-I$out_root" "-I$out_base" "-I$src_root" "-I$src_base" \
   "-DADWAITA_COMPILATION"
 
-#obja{*}: c.poptions += -DLIBADWAITA_STATIC_BUILD
-#objs{*}: c.poptions += -DLIBADWAITA_SHARED_BUILD
-
 # Export options.
 #
 lib{adwaita}:
 {
   c.export.poptions = "-I$out_root" "-I$out_base" "-I$src_root" "-I$src_base"
   c.export.libs = $intf_libs
+  
+  # Header (-I) and library (-L) search paths to use in the generated .pc
+  # file instead of the default install.{include,lib}.
+  #
   c.pkgconfig.include = include/ include/libadwaita/
 }
 
-#liba{adwaita}: c.export.poptions += -DLIBADWAITA_STATIC
-#libs{adwaita}: c.export.poptions += -DLIBADWAITA_SHARED
+if ($c.target.class != 'windows')
+{
+  c.libs += -lm
+  lib{adwaita}: c.export.libs += -lm
+}
 
 # For pre-releases use the complete version to make sure they cannot
 # be used in place of another pre-release or the final version. See
