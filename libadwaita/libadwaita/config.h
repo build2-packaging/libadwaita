@@ -7,7 +7,7 @@
 
 #define GETTEXT_PACKAGE "libadwaita"
 
-#define LOCALEDIR "/usr/share/locale"
+#define LOCALEDIR "/tmp/libadwaita/share/locale"
 
 #define _ADW_EXTERN __attribute__((visibility("default"))) extern
 
